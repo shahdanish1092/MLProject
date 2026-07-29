@@ -30,12 +30,10 @@ def get_requirements(file_path:str) -> List[str]:
 
 
 setup(
-    
-    name = "mlproject",
-    version = "0.0.1",
-    author = "danish",
-    author_email = "danishshah9749@gmail.com",
-    packages  = find_packages(),
-    install_required = get_requirements('requirements.txt')
-
+    name="mlproject",
+    version="0.0.1",
+    author="danish",
+    author_email="danishshah9749@gmail.com",
+    packages=find_packages(),
+    install_requires=get_requirements('requirements.txt')
 )
