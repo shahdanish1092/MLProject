@@ -3,13 +3,15 @@ import sys
 from pathlib import Path
 from dataclasses import dataclass
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.append(str(PROJECT_ROOT))
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 from src.Exception import CustomException
 from src.Logger import logging
 
@@ -65,5 +67,9 @@ class DataIngestion():
 if __name__ == "__main__":
 
     obj = DataIngestion()
-    obj.ingestion_pipeline()
+    train_data, test_data = obj.ingestion_pipeline()
+
+
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
 

@@ -20,10 +20,12 @@ def error_msg_detail(error_msg, error_detail:sys):
 class CustomException(Exception):
 
     def __init__(self, error_message, error_detail):
-
-        super().__init__(error_message)
-
+        # build a formatted message first so it's used as the Exception message
         self.error_message = error_msg_detail(error_message, error_detail=error_detail)
+        super().__init__(self.error_message)
+
+    def __str__(self) -> str:
+        return self.error_message
 
 
 
