@@ -105,7 +105,10 @@
         </div>
     </form>
     <h2>
-       THE  prediction is {{results}}
+       THE prediction is {{results}}
     </h2>
+    {% if training_result %}
+    <p>Training completed with R2 score: {{ training_result.r2_score }}</p>
+    {% endif %}
     </body>
 </html>

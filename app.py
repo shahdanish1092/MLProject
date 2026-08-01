@@ -1,11 +1,7 @@
 from flask import Flask, request, render_template
 
-import numpy as np
-import pandas as pd
-
-from sklearn.preprocessing import StandardScaler
-
 from src.pipeline.prediction_pipeline import CustomData, Predictdata
+from src.pipeline.train_pipeline import TrainingPipeline
 
 
 
@@ -30,6 +26,8 @@ def predict():
 
     else:
 
+        training_result = TrainingPipeline().run_pipeline()
+
         data = CustomData(
             gender = request.form.get('gender'),
             race_ethnicity = request.form.get('ethnicity'),
@@ -47,7 +45,11 @@ def predict():
 
         results = pred_pipeline.predict(conveted_df)
 
-        return render_template('home.html', results=results) 
+        return render_template(
+            'home.html',
+            results=results,
+            training_result=training_result,
+        ) 
 
 
 
